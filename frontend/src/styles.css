@@ -1,0 +1,607 @@
+/* ─── CSS Variables ─── */
+:root {
+  --bg: #f6f5fb;
+  --card: #ffffff;
+  --tx: #1b1630;
+  --mu: #6b6785;
+  --ac: #6d3df5;
+  --ac2: #ec4899;
+  --bd: #e4e1f0;
+  --ok: #16a34a;
+  --bad: #dc2626;
+  --shadow: 0 2px 12px rgba(109, 61, 245, 0.08);
+  --shadow-hover: 0 8px 24px rgba(109, 61, 245, 0.18);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13101f;
+    --card: #1d1930;
+    --tx: #f0eefb;
+    --mu: #9d99b8;
+    --bd: #2f2a47;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #13101f;
+  --card: #1d1930;
+  --tx: #f0eefb;
+  --mu: #9d99b8;
+  --bd: #2f2a47;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+/* ─── Reset & Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Header / Navbar ─── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--card);
+  border-bottom: 1px solid var(--bd);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 21px;
+  color: var(--ac);
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--ac), var(--ac2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+#who {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ─── Buttons ─── */
+button,
+.btn {
+  font: 600 14px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  border: 1.5px solid var(--bd);
+  background: var(--card);
+  color: var(--tx);
+  border-radius: 10px;
+  padding: 7px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+button:hover,
+.btn:hover {
+  border-color: var(--ac);
+  color: var(--ac);
+}
+
+button.p,
+.btn.p {
+  background: linear-gradient(135deg, var(--ac), #8b5cf6);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(109, 61, 245, 0.35);
+}
+
+button.p:hover,
+.btn.p:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(109, 61, 245, 0.45);
+  color: #fff;
+}
+
+button.d,
+.btn.d {
+  color: var(--bad);
+  border-color: #fecaca;
+}
+
+button.d:hover,
+.btn.d:hover {
+  background: #fef2f2;
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+button.on,
+.on {
+  background: linear-gradient(135deg, var(--ac), #8b5cf6);
+  color: #fff !important;
+  border-color: transparent;
+}
+
+button:disabled,
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ─── Inputs ─── */
+input,
+select,
+textarea {
+  font: 14px/1.5 'Inter', system-ui, sans-serif;
+  border: 1.5px solid var(--bd);
+  background: var(--card);
+  color: var(--tx);
+  border-radius: 10px;
+  padding: 8px 12px;
+  max-width: 100%;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--ac);
+  box-shadow: 0 0 0 3px rgba(109, 61, 245, 0.12);
+}
+
+/* ─── Layout ─── */
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  margin: 28px 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+/* ─── Grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+/* ─── Card ─── */
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--bd);
+  border-radius: 16px;
+  padding: 16px;
+  display: block;
+  text-decoration: none;
+  color: var(--tx);
+  box-shadow: var(--shadow);
+}
+
+.ev {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ev:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(109, 61, 245, 0.3);
+  text-decoration: none;
+}
+
+/* ─── Poster ─── */
+.poster {
+  height: 120px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.poster::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+  border-radius: inherit;
+}
+
+/* ─── Utility Classes ─── */
+.mu {
+  color: var(--mu);
+  font-size: 13px;
+}
+
+.tag {
+  display: inline-block;
+  background: rgba(109, 61, 245, 0.1);
+  color: var(--ac);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  margin: 2px 3px 0 0;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ok {
+  color: var(--ok);
+}
+
+.bad {
+  color: var(--bad);
+}
+
+/* ─── Hero Banner ─── */
+.hero {
+  background: linear-gradient(135deg, #6d3df5 0%, #9333ea 50%, #ec4899 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 36px 32px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -40px;
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  margin: 0 0 20px;
+  font-size: 17px;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.hero .row {
+  position: relative;
+  z-index: 1;
+}
+
+.hero input {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1b1630;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 15px;
+  flex: 1;
+  min-width: 240px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero input::placeholder {
+  color: #9d99b8;
+}
+
+.hero button {
+  background: #fff;
+  color: var(--ac);
+  font-weight: 700;
+  border: none;
+  padding: 12px 22px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Seat Map ─── */
+.seat {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0;
+  margin: 2px;
+  background: #d1fae5;
+  color: #065f46;
+  border: 1.5px solid #a7f3d0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.seat:hover:not(:disabled) {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.seat.b,
+.seat.booked {
+  background: #e5e7eb;
+  color: #9ca3af;
+  border-color: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.seat.s,
+.seat.sel {
+  background: linear-gradient(135deg, var(--ac), #8b5cf6);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 10px rgba(109, 61, 245, 0.5);
+}
+
+/* ─── Tables ─── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+td,
+th {
+  border-bottom: 1px solid var(--bd);
+  padding: 10px 8px;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
+  color: var(--mu);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(109, 61, 245, 0.04);
+}
+
+tr:hover td {
+  background: rgba(109, 61, 245, 0.03);
+}
+
+.scroll {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1.5px solid var(--bd);
+}
+
+/* ─── Revenue Bar ─── */
+.bar {
+  height: 8px;
+  background: linear-gradient(90deg, var(--ac), var(--ac2));
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ─── Ticket ─── */
+.tk {
+  border: 2px dashed var(--ac);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(109, 61, 245, 0.04), rgba(236, 72, 153, 0.04));
+  margin: 10px 0;
+}
+
+.tk img,
+.tk svg {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Chat / AI Assistant ─── */
+.msg {
+  padding: 10px 14px;
+  border-radius: 14px;
+  margin: 6px 0;
+  max-width: 82%;
+  font-size: 14px;
+  line-height: 1.5;
+  background: var(--bd);
+  color: var(--tx);
+}
+
+.me {
+  background: linear-gradient(135deg, var(--ac), #8b5cf6);
+  color: #fff;
+  margin-left: auto;
+}
+
+/* ─── Modal ─── */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+}
+
+.modal .card {
+  width: min(400px, 100%);
+  animation: modal-in 0.25s ease;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ─── Links ─── */
+a {
+  color: var(--ac);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+a:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--bd);
+  margin: 16px 0;
+}
+
+/* ─── Loading / State Banners ─── */
+.state-banner {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--mu);
+  background: var(--card);
+  border: 1.5px solid var(--bd);
+  border-radius: 16px;
+  font-size: 15px;
+}
+
+.state-banner .icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+/* ─── Stat Cards ─── */
+.stat-card {
+  background: linear-gradient(135deg, var(--ac), #8b5cf6);
+  color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-card .stat-label {
+  font-size: 13px;
+  opacity: 0.85;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card h2 {
+  margin: 6px 0 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .hero {
+    padding: 24px 16px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  main {
+    padding: 12px 10px 32px;
+  }
+}
